@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class JavaGrep {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		
 		int lineCount=0,flag=0; //Initialize line count to zero
 		Scanner scanner=new Scanner(System.in);
@@ -24,18 +24,23 @@ public class JavaGrep {
 		
 		File file=new File(path);
 		
-		BufferedReader b=new BufferedReader(new FileReader(file));
-		String line;
-		
-		while((line=b.readLine()) != null) {
-			lineCount++;  //Track line count
-			if(line.contains(string)) {  //Check each line for specified string
-				flag=1;
-				System.out.println("Line number: "+lineCount+" Line: "+line);
+		BufferedReader b;
+		try {
+			b = new BufferedReader(new FileReader(file));
+			
+			String line;
+			while((line=b.readLine()) != null) {
+				lineCount++;  //Track line count
+				if(line.contains(string)) {  //Check each line for specified string
+					flag=1;
+					System.out.println("Line number: "+lineCount+" Line: "+line);
+				}
 			}
+			
+			b.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		b.close();
 		
 		if(flag==0)
 			System.out.println("String "+string+" not found");  //Display if string not found in the file

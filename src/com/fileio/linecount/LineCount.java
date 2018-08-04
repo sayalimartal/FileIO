@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class LineCount {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		
 		System.out.println("Enter the file path");
 		Scanner scanner=new Scanner(System.in);
@@ -16,14 +16,18 @@ public class LineCount {
 		
 		scanner.close();
 		
-		BufferedReader reader =new BufferedReader(new FileReader(path));
-		int lineCount=0;  //Initialize line count to zero
-		
-		while(reader.readLine() != null) //Repeat till no line found
-			lineCount++;
-		reader.close();
-		System.out.println("The number of lines in the file is "+lineCount); //Display the number of lines
-
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(path));
+			int lineCount=0;  //Initialize line count to zero
+			
+			while(reader.readLine() != null) //Repeat till no line found
+				lineCount++;
+			reader.close();
+			
+			System.out.println("The number of lines in the file is "+lineCount); //Display the number of lines
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
 }
