@@ -1,0 +1,6 @@
+this is a sample file
+file is used for java grep fileio test
+this file contains no code
+this a basic sample file
+file not to be changed
+sample files help in better testing 
